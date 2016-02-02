@@ -9,9 +9,9 @@ Therefore, I hope this project can be close to the development of python scripts
 
 In my experience of writing scripts, I often get crazy about the robustness of my program. If the program is short and the execution takes only minutes, it may face no problem. However, if the goal of the program is to process a data file or is itself a service, the robustness may be important. If dead, the program should be restarted by itself or other tools like supervised and monit.
 
-In addition, a script may use data parallelism to speed up the execution. So multiprocess is useful. This brings new problem. As several process is running concurrently, we have to monitor the status of all of those. All the logs, outputs, intermediate dumps and running status must be on their own way. Here I would like to use the logging module to do so.
+In addition, a script may use data parallelism to speed up the execution. So multiprocessing is useful. This brings new problem. As several processes are running concurrently, we have to monitor the status of all of them. All the logs, outputs, intermediate dumps and running status must be on their own way. Here I would like to use the logging module to do so.
 
-Thus, all four aspects, robustness, speed, logging and monitoring, are focused on for this project.
+Thus, all four aspects, robustness, speed, logging and monitoring, are focused on in this project.
 
 ### License
 
