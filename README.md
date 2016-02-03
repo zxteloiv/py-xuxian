@@ -13,6 +13,18 @@ In addition, a script may use data parallelism to speed up the execution. So mul
 
 Thus, all four aspects, robustness, speed, logging and monitoring, are focused on in this project.
 
+### Usage
+
+Refer to the example folder. Things are easy.
+
+~~~shell
+PYTHONPATH=../ python main.py
+~~~
+
+### Tools
+
+There's a script to rotate log files in the tool directory. Add a line into the crontab then it will do the remaining.
+
 ### License
 
 The Star And Thank Author License (SATA)
