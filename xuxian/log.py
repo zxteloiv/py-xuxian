@@ -41,6 +41,6 @@ def str2level(level_string):
         raise ValueError('cannot recognize the level: %s' % str(level_string))
 
 def apply_dump_file(name, filename):
-    logger = xuxian.log.apply_logger(name, filename, logging.INFO, '%(message)s')
+    logger = apply_logger(name, filename, logging.INFO, '%(message)s')
     return logger
 
