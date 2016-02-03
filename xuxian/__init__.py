@@ -10,23 +10,20 @@ import xuxian.log
 from xuxian.log import LogDict, apply_logger, apply_dump_file
 
 args = None
-unknown = []
 
 def get_parser():
     return xuxian.options.parser
 
 def get_args():
     global args
-    global unknown
 
     if args is None:
         args = xuxian.options.parser.parse_args()
 
-    return (args, unknown)
+    return args
 
 def parse_args():
     global args
-    global unknown
 
     if args is None:
         args = xuxian.options.parser.parse_args()
