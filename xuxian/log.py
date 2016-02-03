@@ -1,24 +1,26 @@
-#!/usr/bin/env python
+# coding: utf-8
 
 from __future__ import absolute_import
 
 import logging
 import logging.handlers
 
-import xuxian.script 
-import xuxian.options
-
-
-def acquireLogger(logger_name = 'public', filename = 'log/public/public.log'):
-    logger = logger.getLogger(logger_name)
-    logger.setLevel(logging.INFO)
-    handler = logging.handlers.WatchedFileHandler(filename)
-    formatter = logging.Formatter('%(message)s')
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-    return logger
-
 SEP_WILDCARD = '__comma__'
+STANDARD_FORMAT = '%(asctime)-15s@%(process)d:%(filename)s:%(lineno)d:%(levelno)d$$ %(message)s'
+
+def acquireLogger(logger_name='public', filename=None, level=logging.INFO):
+    global STANDARD_FORMAT
+
+    logger = logging.getLogger(logger_name)
+    logger.setLevel(level)
+
+    handler = logging.handlers.WatchedFileHandler(filename if filename else './' + logger_name + '.log')
+    formatter = logging.Formatter(STANDARD_FORMAT)
+    handler.setFormatter(formatter)
+
+    logger.addHandler(handler)
+
+    return logger
 
 class LogDict(dict):
     def __str__(self):
@@ -26,18 +28,24 @@ class LogDict(dict):
         return ",".join('='.join(str(x).replace(',', SEP_WILDCARD) for x in pair)
                         for pair in self.iteritems())
 
-content = LogDict({"a":1, "b":2})
+def get_options(options=None):
+    if options is None:
+        import xuxian.options
+        options = xuxian.options
 
-"""
-FORMAT = '%(asctime)-15s %(levelno)d %(message)s'
-logging.basicConfig(format=FORMAT, level=20)
+    return options
 
-logger = logging.getLogger('tcpserver')
-logger.warning('Protocol problem: %s', 'connection reset')
+system_logger = logging.getLogger('xuxian')
 
-access_log = logging.getLogger("xuxian.access")
-access_log.info(content)
-"""
+def str2level(level_string):
+    if level_string == 'INFO':
+        return logging.INFO
+    elif level_string == 'DEBUG':
+        return logging.DEBUG
+    elif level_string == 'WARNING':
+        return logging.WARNING
+    elif level_string == 'ERROR':
+        return logging.ERROR
+    else:
+        raise ValueError('cannot recognize the level: %s' % str(level_string))
 
-
-#xuxian_logger = acquireLogger('xuxian', 
