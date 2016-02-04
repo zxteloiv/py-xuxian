@@ -45,7 +45,8 @@ def remember(uniqueid, data):
     """
     global args
 
-    xuxian.state._remember(uniqueid, data, args.state_path + '/' + uniqueid)
+    state_path = args.state_path
+    xuxian.state._remember(uniqueid, data, state_path + '/' + uniqueid)
 
 def recall(uniqueid):
     """

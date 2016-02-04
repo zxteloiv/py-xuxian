@@ -11,8 +11,6 @@ def _remember(uniqueid, data, filename):
     """
     Save the state for a program.
     """
-    logger = apply_logger('_xuxian_state_' + uniqueid, filename=filename,
-            format='%(message)s', writing_mode='wb')
-
-    logger.info(data)
+    with open(filename, 'wb') as f:
+        f.write(data)
     
