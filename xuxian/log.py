@@ -8,9 +8,18 @@ import logging.handlers
 SEP_WILDCARD = '__comma__'
 STANDARD_FORMAT = '%(asctime)-15s@%(process)d:%(filename)s:%(lineno)d:%(levelno)d$$ %(message)s'
 
+logger_memory = set()
+
 def apply_logger(logger_name='public', filename=None, level=logging.INFO, format=STANDARD_FORMAT,
         writing_mode='a'):
+    global logger_memory 
     logger = logging.getLogger(logger_name)
+
+    if logger_name in logger_memory:
+        return logger
+
+    logger_memory.add(logger_name)
+
     logger.setLevel(level)
 
     handler = logging.handlers.WatchedFileHandler(filename if filename else './' + logger_name + '.log',
