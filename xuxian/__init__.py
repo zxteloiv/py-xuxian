@@ -55,7 +55,11 @@ def recall(uniqueid):
     :return the data saved last time
     """
     global args
-    return open(args.state_path + '/' + uniqueid, 'rb').read().strip()
+    filename = args.state_path + '/' + uniqueid
+    if not os.path.isfile(filename):
+        return None
+    else:
+        return open(filename, 'rb').read().strip()
 
 def run(func):
     global args
