@@ -5,7 +5,6 @@ from __future__ import absolute_import
 import logging
 import logging.handlers
 
-SEP_WILDCARD = '__comma__'
 STANDARD_FORMAT = '%(asctime)-15s@%(process)d:%(filename)s:%(lineno)d:%(levelno)d$$ %(message)s'
 
 logger_memory = set()
@@ -34,7 +33,7 @@ def apply_logger(logger_name='public', filename=None, level=logging.INFO, format
 class LogDict(dict):
     def __str__(self):
         global SEP_WILDCARD
-        return ",".join('='.join(str(x).replace(',', SEP_WILDCARD) for x in pair)
+        return ";".join('='.join(str(x).replace(';', ',') for x in pair)
                         for pair in self.iteritems())
 
 system_logger = logging.getLogger('xuxian')
