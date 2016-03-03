@@ -46,7 +46,7 @@ def remember(uniqueid, data):
     global args
 
     state_path = args.state_path
-    xuxian.state._remember(uniqueid, data, state_path + '/' + uniqueid)
+    xuxian.state.remember(uniqueid, data, state_path + '/' + uniqueid)
 
 def recall(uniqueid):
     """
@@ -60,7 +60,7 @@ def recall(uniqueid):
     if not os.path.isfile(filename):
         return None
     else:
-        return open(filename, 'rb').read().strip()
+        return xuxian.state.recall(uniqueid, filename)
 
 def run(func):
     global args
