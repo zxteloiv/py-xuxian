@@ -1,5 +1,10 @@
 # coding: utf-8
 
+__version__ = '0.1.0'
+__title__ = 'xuxian'
+__author__ = 'zxteloiv'
+__license__ = 'The Star And Thank Author License'
+
 from __future__ import absolute_import
 
 import sys
