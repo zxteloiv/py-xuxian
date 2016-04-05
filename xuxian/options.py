@@ -12,7 +12,7 @@ def define_logging_arguments(parser):
                         default='INFO', help='choose the debug level')
 
 def define_state_arguments(parser):
-    parser.add_argument('--state-path', metavar='/path/to/parser', default='./states',
+    parser.add_argument('--state-path', metavar='/path/to/parser', default='./',
                         help='The path to remember state')
 
 define_logging_arguments(parser)
